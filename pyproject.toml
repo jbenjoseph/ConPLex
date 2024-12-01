@@ -51,7 +51,7 @@ numpy = "*"
 
 [tool.poetry.group.dev.dependencies]
 bandit = "*"
-black = { version = "^23.1", allow-prereleases = true }
+black = "*"
 darglint = "*"
 isort = { extras = ["colors"], version = "*" }
 mypy = "*"
