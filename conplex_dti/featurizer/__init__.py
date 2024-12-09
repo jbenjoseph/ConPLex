@@ -6,6 +6,7 @@ from .base import (
     get_featurizer,
 )
 from .molecule import MorganFeaturizer  # Mol2VecFeaturizer,; MolRFeaturizer,
+from .chemberta import ChemBERTaFeaturizer
 from .protein import (  # ProseFeaturizer,; DSCRIPTFeaturizer,
     BeplerBergerFeaturizer,
     BindPredict21Featurizer,

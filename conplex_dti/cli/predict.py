@@ -5,7 +5,7 @@ import pandas as pd
 import torch
 from torch.utils.data import DataLoader
 
-from ..featurizer import MorganFeaturizer, ProtBertFeaturizer
+from ..featurizer import ProtBertFeaturizer, ChemBERTaFeaturizer
 from ..model.architectures import SimpleCoembeddingNoSigmoid
 from ..utils import get_logger, set_random_seed
 
@@ -95,7 +95,7 @@ def main(args):
     target_featurizer = ProtBertFeaturizer(
         save_dir=args.data_cache_dir, per_tok=False
     ).to(device)
-    drug_featurizer = MorganFeaturizer(save_dir=args.data_cache_dir).to(device)
+    drug_featurizer = ChemBERTaFeaturizer(save_dir=args.data_cache_dir).to(device)
 
     drug_featurizer.preload(query_df["moleculeSmiles"].unique())
     target_featurizer.preload(query_df["proteinSequence"].unique())
