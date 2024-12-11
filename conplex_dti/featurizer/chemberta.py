@@ -40,7 +40,6 @@ class ChemBERTaFeaturizer(Featurizer):
             model_name,
         )
         self.model.eval()
-        self.model.to(self.device)
 
         self.max_length = max_length
 
@@ -60,14 +59,13 @@ class ChemBERTaFeaturizer(Featurizer):
                 padding="max_length",
                 max_length=self.max_length,
             )
-            input_ids = inputs["input_ids"].to(self.device)
-            attention_mask = inputs["attention_mask"].to(self.device)
+            input_ids = inputs["input_ids"]
+            attention_mask = inputs["attention_mask"]
 
             with torch.no_grad():
                 outputs = self.model(
                     input_ids=input_ids,
                     attention_mask=attention_mask,
-                    device=self.device,
                 )
                 # Use the [CLS] token representation
                 cls_embedding = outputs.last_hidden_state[
