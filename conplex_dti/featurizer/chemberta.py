@@ -40,6 +40,7 @@ class ChemBERTaFeaturizer(Featurizer):
             model_name,
         )
         self.model.eval()
+        self.model.to(self.device)
 
         self.max_length = max_length
 
