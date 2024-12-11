@@ -41,12 +41,6 @@ class ChemBERTaFeaturizer(Featurizer):
         )
         self.model.eval()
 
-        if device:
-            self.device = torch.device(device)
-        else:
-            self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.model.to(self.device)
-
         self.max_length = max_length
 
     def _transform(self, smile: str) -> torch.Tensor:
