@@ -1,5 +1,5 @@
 # Logging and Paths
-wandb_proj: Chemberta-Conplex-BindingDB-NoConst # Weights and Biases project to log results to.
+wandb_proj: Chemberta-Conplex-BindingDB # Weights and Biases project to log results to.
 wandb_save: True # Whether or not to log to Weights and Biases.
 log_file: ./logs/scratch_testing.log # Location of log file
 model_save_dir: ./best_models # Location to save best models
