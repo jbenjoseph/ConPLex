@@ -72,6 +72,8 @@ def set_random_seed(seed):
 
 
 def canonicalize(smiles):
+    if float == type(smiles):
+        return None
     mol = Chem.MolFromSmiles(smiles)
     if mol is not None:
         return Chem.MolToSmiles(mol, isomericSmiles=True)

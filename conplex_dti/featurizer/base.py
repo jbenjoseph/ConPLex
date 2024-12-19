@@ -16,6 +16,8 @@ logg = get_logger()
 
 
 def sanitize_string(s):
+    if type(s) is not str:
+        return ""
     return s.replace("/", "|")
 
 
