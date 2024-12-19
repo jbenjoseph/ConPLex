@@ -16,8 +16,10 @@ logg = get_logger()
 
 
 def sanitize_string(s):
-    return s.replace("/", "|")
-
+    try:
+        return s.replace("/", "|")
+    except:
+        return ""
 
 def get_featurizer(featurizer_string, *args, **kwargs):
     from .. import featurizer as featurizers

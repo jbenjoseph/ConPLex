@@ -72,10 +72,13 @@ def set_random_seed(seed):
 
 
 def canonicalize(smiles):
-    mol = Chem.MolFromSmiles(smiles)
-    if mol is not None:
-        return Chem.MolToSmiles(mol, isomericSmiles=True)
-    else:
+    try:
+        mol = Chem.MolFromSmiles(smiles)
+        if mol is not None:
+            return Chem.MolToSmiles(mol, isomericSmiles=True)
+        else:
+            return None
+    except:
         return None
 
 
