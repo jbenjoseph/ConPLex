@@ -157,17 +157,13 @@ class Featurizer:
         if write_first and not self._save_path.exists():
             self.write_to_disk(seq_list, verbose=verbose)
 
-        if self._save_path.exists():
-            pass
+        for seq in tqdm(seq_list, disable=not verbose, desc=self.name):
+            feats = self.transform(seq)
 
-        else:
-            for seq in tqdm(seq_list, disable=not verbose, desc=self.name):
-                feats = self.transform(seq)
+            if self._on_cuda:
+                feats = feats.to(self.device)
 
-                if self._on_cuda:
-                    feats = feats.to(self.device)
-
-                self._features[seq] = feats
+            self._features[seq] = feats
 
         # seqs_sanitized = [sanitize_string(s) for s in seq_list]
         # feat_dict = load_hdf5_parallel(self._save_path, seqs_sanitized,n_jobs=32)
