@@ -157,18 +157,7 @@ class Featurizer:
             self.write_to_disk(seq_list, verbose=verbose)
 
         if self._save_path.exists():
-            with h5py.File(self._save_path, "r") as h5fi:
-                for seq in tqdm(seq_list, disable=not verbose, desc=self.name):
-                    if seq in h5fi:
-                        seq_h5 = sanitize_string(seq)
-                        feats = torch.from_numpy(h5fi[seq_h5][:])
-                    else:
-                        feats = self.transform(seq)
-
-                    if self._on_cuda:
-                        feats = feats.to(self.device)
-
-                    self._features[seq] = feats
+            pass
 
         else:
             for seq in tqdm(seq_list, disable=not verbose, desc=self.name):
