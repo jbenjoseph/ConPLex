@@ -16,7 +16,6 @@ logg = get_logger()
 
 
 def sanitize_string(s):
-    
     return s.replace("/", "|")
 
 
@@ -136,15 +135,7 @@ class Featurizer:
         return self
 
     def write_to_disk(self, seq_list: T.List[str], verbose: bool = True) -> None:
-        logg.info(f"Writing {self.name} features to {self.path}")
-        with h5py.File(self._save_path, "a") as h5fi:
-            for seq in tqdm(seq_list, disable=not verbose, desc=self.name):
-                seq_h5 = sanitize_string(seq)
-                if seq_h5 in h5fi:
-                    logg.warning(f"{seq} already in h5file")
-                feats = self.transform(seq)
-                dset = h5fi.require_dataset(seq_h5, feats.shape, np.float32)
-                dset[:] = feats.cpu().numpy()
+        pass
 
     def preload(
         self,
